@@ -1,0 +1,17 @@
+{
+  "name": "angular-threejs",
+  "version": "0.1.0",
+  "dependencies": {
+    "angular": ">0.9.0"
+  },
+  "main": "angular-threejs.js",
+  "ignore": [
+    ".*",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src",
+    "package.json"
+  ],
+  "homepage": "https://github.com/3DGenomes/angular-threejs"
+}
