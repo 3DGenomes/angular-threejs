@@ -4,9 +4,9 @@ var gulp = require('gulp');
 // Include Our Plugins
 var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
+var rename = require('gulp-rename');
 var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
 
 // Lint Task
 gulp.task('lint', function() {

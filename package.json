@@ -1,0 +1,27 @@
+{
+  "name": "angular-threejs",
+  "version": "0.1.1",
+  "description": "THREEjs Service for Angular",
+  "main": "dist/angular-threejs.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/3DGenomes/angular-threejs.git"
+  },
+  "author": "Mike Goodstadt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/3DGenomes/angular-threejs/issues"
+  },
+  "homepage": "https://github.com/3DGenomes/angular-threejs",
+  "devDependencies": {
+    "gulp": "^3.8.7",
+    "gulp-concat": "^2.3.4",
+    "gulp-jshint": "^1.8.4",
+    "gulp-ng-annotate": "^1.1.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^1.4.2"
+  }
+}
