@@ -11,11 +11,10 @@
 	'use strict';
 	angular
 		.module('threejs')
-		.factory('THREELoader', THREELoader);
+		.factory('THREEImageLoader', THREEImageLoader);
 
-	function THREELoader(THREEService, $document, $q, $rootScope) {
-		// check if THREEService is loaded
-		// check if plugin already loaded - add and remove form array
+	function THREEImageLoader(THREEService, $document, $q, $rootScope) {
+		// TODO: check if texture already loaded - add and remove from array
 		var textures = {
 			loaded: []
 		};

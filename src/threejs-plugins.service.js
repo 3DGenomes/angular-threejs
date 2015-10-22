@@ -13,9 +13,7 @@
 		.module('threejs')
 		.factory('THREEPlugins', THREEPlugins);
 
-	function THREEPlugins(THREEService, $document, $q, $rootScope) {
-		// check if THREEService is loaded
-		// check if plugin already loaded - add and remove form array
+	function THREEPlugins($document, $q, $rootScope) {
 		var plugins = {
 			loaded: []
 		};
