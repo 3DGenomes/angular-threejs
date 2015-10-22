@@ -24,9 +24,9 @@ gulp.task('dist', function() {
 			'src/threejs-plugins.service.js',
 			// 'src/threejs-image-loader.service.js'
 		])
-		.pipe(concat('angular-tadkit.js'))
+		.pipe(concat('angular-threejs.js'))
 		.pipe(gulp.dest('dist'))
-		.pipe(rename('angular-tadkit.min.js'))
+		.pipe(rename('angular-threejs.min.js'))
 		.pipe(ngAnnotate())
 		.pipe(uglify())
 		.pipe(gulp.dest('dist'));
