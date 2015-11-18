@@ -11,9 +11,9 @@
 	'use strict';
 	angular
 		.module('threejs')
-		.factory('THREEImageLoader', THREEImageLoader);
+		.factory('THREETextures', THREETextures);
 
-	function THREEImageLoader(THREEService, $document, $q, $rootScope) {
+	function THREETextures(THREEService, $document, $q, $rootScope) {
 		// TODO: check if texture already loaded - add and remove from array
 		var textures = {
 			loaded: []
@@ -21,6 +21,8 @@
 
 		return {
 			load: function(filenames) {
+				console.log(filenames);
+				
 				var self = this;
 				var imagesToLoad = []; // push async functions into list for subsequent processing
 				angular.forEach(filenames, function(filename, key) {

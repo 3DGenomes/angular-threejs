@@ -22,7 +22,7 @@ gulp.task('dist', function() {
 	return gulp.src([
 			'src/threejs-core.service.js',
 			'src/threejs-plugins.service.js',
-			// 'src/threejs-image-loader.service.js'
+			'src/threejs-textures.service.js'
 		])
 		.pipe(concat('angular-threejs.js'))
 		.pipe(gulp.dest('dist'))
