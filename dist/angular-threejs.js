@@ -164,7 +164,7 @@
 	}
 })();
 /**!
- * THREEjs Image Loader Service for
+ * THREEjs Textures Service for
  * THREEjs Angular module implmenting
  * THREEjs https://github.com/mrdoob/three.js/
  * see http://threejs.org by mrdoob
@@ -187,7 +187,7 @@
 		return {
 			load: function(filenames) {
 				console.log(filenames);
-				
+
 				var self = this;
 				var imagesToLoad = []; // push async functions into list for subsequent processing
 				angular.forEach(filenames, function(filename, key) {
