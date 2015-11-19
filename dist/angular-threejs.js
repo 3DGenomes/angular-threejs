@@ -40,7 +40,10 @@
 
 		function onScriptLoad() {
 			if (!renderer) setRenderer();
-			$rootScope.$apply(function() { deferred.resolve(window.THREE); });
+			console.log("Loaded THREE.js!");
+			$rootScope.$apply(function() {
+				deferred.resolve(window.THREE);
+			});
 		}
 
 		// Create a script tag with ThreeJS as the source
@@ -75,6 +78,7 @@
 
 		return {
 			load: function() {
+				// console.log("Loading THREE.js...");
 				return deferred.promise;
 			},
 			getRenderer: function() {
@@ -186,8 +190,8 @@
 
 		return {
 			load: function(filenames) {
-				console.log(filenames);
-
+				// console.log(filenames);
+				
 				var self = this;
 				var imagesToLoad = []; // push async functions into list for subsequent processing
 				angular.forEach(filenames, function(filename, key) {
@@ -196,7 +200,7 @@
 						if (textures.loaded[key] == filename) newImage = false;
 					}
 					if (newImage) {
-						var loadImage = self.add(filename);
+						var loadImage = self.add(key, filename);
 						imagesToLoad.push(loadImage);
 					}
 				});
@@ -206,7 +210,7 @@
 					return window.THREE;
 				});
 			},
-			add: function(filename) {
+			add: function(textureName, filename) {
 				var deferred = $q.defer();
 
 				// Create Manager
@@ -218,7 +222,6 @@
 				textureManager.onLoad = function () {
 					// all textures are loaded
 					$rootScope.$apply(function() {
-						console.log(textures.loaded);
 						deferred.resolve(filename);
 					});
 				};
@@ -231,15 +234,13 @@
 						console.log( Math.round(percentComplete, 2) + '% downloaded' );
 					}
 				};
-
 				var onError = function ( xhr ) {
 				};
-				textures.loaded.push( newTexture );
-
-				// Load Image to Texture
-				var imageLoader = new THREE.ImageLoader( textureManager );
-				imageLoader.load( filename, function ( image ) {
-					newTexture.image = image;
+				var loader = new THREE.TextureLoader( textureManager );
+				loader.load( filename, function ( texture ) {
+					newTexture = texture;
+					newTexture.name = textureName;
+					textures.loaded.push( newTexture );
 				}, onProgress, onError );
 
 				return deferred.promise;
@@ -249,9 +250,28 @@
 					if (texture == filename) {
 						textures.loaded[key].pop();
 						// REMOVE DOM ELEMENT?
-						console.log("Image " + filename + " removed.");
+						console.log("Removed " + filename + " texture.");
 					}
 				});
+			},
+			get: function(textureName) {
+				var texture, found;
+				if (textureName !== undefined || textureName !== false) {
+					for (var i = textures.loaded.length - 1; i >= 0; i--) {
+						if (textures.loaded[i].name === textureName) {
+							texture = textures.loaded[i];
+							found = true;
+							// console.log("Texture \"" + textureName + "\" found!");
+						}
+					}
+				}
+				if (!found) {
+					texture = textures.loaded[0];
+					console.log("Texture \"" + textureName + "\" not found: returning \"" + texture.name + ".\"");
+				}
+				// console.log(texture);
+				return texture;
+
 			}
 		};
 	}
