@@ -40,7 +40,10 @@
 
 		function onScriptLoad() {
 			if (!renderer) setRenderer();
-			$rootScope.$apply(function() { deferred.resolve(window.THREE); });
+			console.log("Loaded THREE.js!");
+			$rootScope.$apply(function() {
+				deferred.resolve(window.THREE);
+			});
 		}
 
 		// Create a script tag with ThreeJS as the source
@@ -75,6 +78,7 @@
 
 		return {
 			load: function() {
+				// console.log("Loading THREE.js...");
 				return deferred.promise;
 			},
 			getRenderer: function() {
