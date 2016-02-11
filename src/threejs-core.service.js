@@ -3,10 +3,9 @@
  * THREEjs https://github.com/mrdoob/three.js/
  * see http://threejs.org by mrdoob
  * @author  Mike Goodstadt  <mikegoodstadt@gmail.com>
- * @version 1.0.0
+ * @version 0.1.2
  */
- 
- (function() {
+(function() {
 	'use strict';
 	angular.module('threejs', []);
 
@@ -14,7 +13,7 @@
 		.module('threejs')
 		.factory('THREEService', THREEService);
 
-	function THREEService($document, $q, $rootScope) {
+	function THREEService($log, $document, $q, $rootScope) {
 		var deferred = $q.defer();
 
 		// RENDER VARIABLES
@@ -40,7 +39,7 @@
 
 		function onScriptLoad() {
 			if (!renderer) setRenderer();
-			console.log("Loaded THREE.js!");
+			$log.log("THREE.js loaded OK!");
 			$rootScope.$apply(function() {
 				deferred.resolve(window.THREE);
 			});
@@ -78,7 +77,7 @@
 
 		return {
 			load: function() {
-				// console.log("Loading THREE.js...");
+				$log.log("THREE.js loading...");
 				return deferred.promise;
 			},
 			getRenderer: function() {

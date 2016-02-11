@@ -1,6 +1,6 @@
 {
   "name": "angular-threejs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "THREEjs Service for Angular",
   "main": "dist/angular-threejs.min.js",
   "scripts": {
