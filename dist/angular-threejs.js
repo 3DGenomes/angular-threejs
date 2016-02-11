@@ -3,7 +3,7 @@
  * THREEjs https://github.com/mrdoob/three.js/
  * see http://threejs.org by mrdoob
  * @author  Mike Goodstadt  <mikegoodstadt@gmail.com>
- * @version 1.0.0
+ * @version 0.1.2
  */
 (function() {
 	'use strict';
@@ -93,7 +93,7 @@
  * THREEjs https://github.com/mrdoob/three.js/
  * see http://threejs.org by mrdoob
  * @author  Mike Goodstadt  <mikegoodstadt@gmail.com>
- * @version 1.0.0
+ * @version 0.1.2
  */
 (function() {
 	'use strict';
@@ -171,7 +171,7 @@
  * THREEjs https://github.com/mrdoob/three.js/
  * see http://threejs.org by mrdoob
  * @author  Mike Goodstadt  <mikegoodstadt@gmail.com>
- * @version 1.0.0
+ * @version 0.1.2
  */
 (function() {
 	'use strict';
