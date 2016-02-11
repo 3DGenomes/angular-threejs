@@ -6,14 +6,13 @@
  * @author  Mike Goodstadt  <mikegoodstadt@gmail.com>
  * @version 1.0.0
  */
- 
- (function() {
+(function() {
 	'use strict';
 	angular
 		.module('threejs')
 		.factory('THREETextures', THREETextures);
 
-	function THREETextures(THREEService, $document, $q, $rootScope) {
+	function THREETextures(THREEService, $log, $document, $q, $rootScope) {
 		// TODO: check if texture already loaded - add and remove from array
 		var textures = {
 			loaded: []
@@ -21,7 +20,7 @@
 
 		return {
 			load: function(filenames) {
-				// console.log(filenames);
+				$log.debug(filenames);
 				
 				var self = this;
 				var imagesToLoad = []; // push async functions into list for subsequent processing
@@ -37,7 +36,7 @@
 				});
 				return $q.all(imagesToLoad)
 				.then(function(results) {
-					if (results.length > 0) console.log("Images loaded: " + results);
+					if (results.length > 0) $log.debug("Images loaded: " + results);
 					return window.THREE;
 				});
 			},
@@ -48,7 +47,7 @@
 				var textureManager = new THREE.LoadingManager();
 				textureManager.onProgress = function ( item, loaded, total ) {
 					// this gets called after any item has been loaded
-					console.log( item, loaded, total );
+					$log.debug( item, loaded, total );
 				};
 				textureManager.onLoad = function () {
 					// all textures are loaded
@@ -62,7 +61,7 @@
 				var onProgress = function ( xhr ) {
 					if ( xhr.lengthComputable ) {
 						var percentComplete = xhr.loaded / xhr.total * 100;
-						console.log( Math.round(percentComplete, 2) + '% downloaded' );
+						$log.debug( Math.round(percentComplete, 2) + '% downloaded' );
 					}
 				};
 				var onError = function ( xhr ) {
@@ -81,7 +80,7 @@
 					if (texture == filename) {
 						textures.loaded[key].pop();
 						// REMOVE DOM ELEMENT?
-						console.log("Removed " + filename + " texture.");
+						$log.info("Removed " + filename + " texture.");
 					}
 				});
 			},
@@ -92,15 +91,15 @@
 						if (textures.loaded[i].name === textureName) {
 							texture = textures.loaded[i];
 							found = true;
-							// console.log("Texture \"" + textureName + "\" found!");
+							$log.info("Texture \"" + textureName + "\" found!");
 						}
 					}
 				}
 				if (!found) {
 					texture = textures.loaded[0];
-					console.log("Texture \"" + textureName + "\" not found: returning \"" + texture.name + ".\"");
+					$log.warn("Texture \"" + textureName + "\" not found: returning \"" + texture.name + ".\"");
 				}
-				// console.log(texture);
+				$log.debug(texture);
 				return texture;
 
 			}

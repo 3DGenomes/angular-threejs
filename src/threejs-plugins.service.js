@@ -6,14 +6,13 @@
  * @author  Mike Goodstadt  <mikegoodstadt@gmail.com>
  * @version 1.0.0
  */
- 
- (function() {
+(function() {
 	'use strict';
 	angular
 		.module('threejs')
 		.factory('THREEPlugins', THREEPlugins);
 
-	function THREEPlugins($document, $q, $rootScope) {
+	function THREEPlugins($log, $document, $q, $rootScope) {
 		var plugins = {
 			loaded: []
 		};
@@ -34,7 +33,7 @@
 				});
 				return $q.all(pluginsToLoad)
 				.then(function(results) {
-					if (results.length > 0) console.log("THREE.js plugins loaded: " + results);
+					if (results.length > 0) $log.info("THREE.js plugins loaded: " + results);
 					return window.THREE;
 				});
 			},
@@ -44,7 +43,7 @@
 				function onScriptLoad() {
 					$rootScope.$apply(function() {
 						plugins.loaded.push(filename);
-						// console.log(plugins.loaded);
+						$log.debug(plugins.loaded);
 						deferred.resolve(filename);
 					});
 				}
@@ -70,7 +69,7 @@
 					if (plugin == filename) {
 						plugins.loaded[key].pop();
 						// REMOVE DOM ELEMENT?
-						console.log("THREE.js plugin " + filename + " removed.");
+						$log.info("THREE.js plugin " + filename + " removed.");
 					}
 				});
 			}
